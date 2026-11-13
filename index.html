@@ -129,6 +129,36 @@
     }
     .card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--text); }
     .card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+    
+    /* Chess styling */
+    .chess-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .chessboard {
+      display: grid;
+      grid-template-columns: repeat(8, 50px);
+      grid-template-rows: repeat(8, 50px);
+      border: 3px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .square {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .square.light { background-color: #f0d9b5; color: #000; }
+    .square.dark { background-color: #b58863; color: #000; }
+    .square.selected { background-color: #7b61ff !important; }
+
     footer {
       border-top: 1px solid var(--border);
       padding: 30px;
@@ -146,7 +176,7 @@
       <a href="#" class="active" onclick="switchTab('home', event)">Home</a>
       <a href="#" onclick="switchTab('projects', event)">Projects</a>
       <a href="#" onclick="switchTab('stats', event)">Stats</a>
-      <a href="#" onclick="switchTab('minigame', event)">Mini Game</a>
+      <a href="#" onclick="switchTab('minigame', event)">Play vs Albert</a>
       <a href="#" onclick="switchTab('chat', event)">Chat</a>
       <a href="https://github.com/hillsonkhanal10" target="_blank">GitHub</a>
       <button id="theme-toggle" title="Toggle theme">◐</button>
@@ -201,13 +231,13 @@
       </div>
     </div>
 
-    <!-- MINI GAME SECTION -->
+    <!-- CHESS MINI GAME VS ALBERT -->
     <div id="minigame" class="section-content">
-      <h1>Mini Game</h1>
-      <div class="card" style="text-align: center; padding: 40px;">
-        <h3>Click Counter Challenge</h3>
-        <p id="score-text" style="font-size: 1.2rem; margin: 20px 0;">Score: 0</p>
-        <button onclick="incrementScore()" style="background: var(--accent); color: white; border: none; padding: 10px 20px; font-family: inherit; font-weight: bold; border-radius: 4px; cursor: pointer;">Click to Play!</button>
+      <h1>Play Chess vs Albert</h1>
+      <p class="bio" id="chess-status">Your turn! Click a white piece to move.</p>
+      <div class="chess-container">
+        <div class="chessboard" id="board"></div>
+        <button onclick="resetChess()" style="background: var(--accent); color: white; border: none; padding: 8px 16px; font-family: inherit; font-weight: bold; border-radius: 4px; cursor: pointer;">Restart Game</button>
       </div>
     </div>
 
@@ -243,11 +273,106 @@
       }
     }
 
-    let score = 0;
-    function incrementScore() {
-      score++;
-      document.getElementById('score-text').innerText = 'Score: ' + score;
+    // Simple Chess Game vs Albert Bot
+    const initialBoard = [
+      ['r','n','b','q','k','b','n','r'],
+      ['p','p','p','p','p','p','p','p'],
+      ['','','','','','','',''],
+      ['','','','','','','',''],
+      ['','','','','','','',''],
+      ['','','','','','','',''],
+      ['P','P','P','P','P','P','P','P'],
+      ['R','N','B','Q','K','B','N','R']
+    ];
+    let board = JSON.parse(JSON.stringify(initialBoard));
+    let selectedPiece = null;
+    let turn = 'player'; // player (white) or albert (black)
+
+    const pieceSymbols = {
+      'r': '∜', 'n': '♞', 'b': '♝', 'q': '♛', 'k': '♚', 'p': '♟',
+      'R': '♜', 'N': '♞', 'B': '♗', 'Q': '♕', 'K': '♔', 'P': '♙'
+    };
+
+    function renderBoard() {
+      const boardEl = document.getElementById('board');
+      boardEl.innerHTML = '';
+      for (let r = 0; r < 8; r++) {
+        for (let c = 0; c < 8; c++) {
+          const sq = document.createElement('div');
+          sq.className = `square ${(r + c) % 2 === 0 ? 'light' : 'dark'}`;
+          if (selectedPiece && selectedPiece.r === r && selectedPiece.c === c) {
+            sq.classList.add('selected');
+          }
+          const p = board[r][c];
+          if (p) {
+            sq.innerText = pieceSymbols[p] || p;
+          }
+          sq.onclick = () => handleSquareClick(r, c);
+          boardEl.appendChild(sq);
+        }
+      }
     }
+
+    function handleSquareClick(r, c) {
+      if (turn !== 'player') return;
+      const piece = board[r][c];
+      
+      // Select player's piece (Uppercase = White)
+      if (piece && piece === piece.toUpperCase()) {
+        selectedPiece = { r, c };
+        renderBoard();
+        return;
+      }
+
+      // Move piece if already selected
+      if (selectedPiece) {
+        board[r][c] = board[selectedPiece.r][selectedPiece.c];
+        board[selectedPiece.r][selectedPiece.c] = '';
+        selectedPiece = null;
+        renderBoard();
+        
+        turn = 'albert';
+        document.getElementById('chess-status').innerText = "Albert is thinking...";
+        setTimeout(albertMove, 800);
+      }
+    }
+
+    function albertMove() {
+      // Simple bot logic for Albert: find black pieces and make a random valid-ish move
+      let blackPieces = [];
+      for (let r = 0; r < 8; r++) {
+        for (let c = 0; c < 8; c++) {
+          if (board[r][c] && board[r][c] === board[r][c].toLowerCase()) {
+            blackPieces.push({ r, c });
+          }
+        }
+      }
+
+      if (blackPieces.length > 0) {
+        // Pick a random black piece and move it forward or sideways if empty
+        let randomPiece = blackPieces[Math.floor(Math.random() * blackPieces.length)];
+        let targetR = randomPiece.r + 1;
+        let targetC = randomPiece.c;
+        if (targetR < 8 && board[targetR][targetC] === '') {
+          board[targetR][targetC] = board[randomPiece.r][randomPiece.c];
+          board[randomPiece.r][randomPiece.c] = '';
+        }
+      }
+
+      turn = 'player';
+      renderBoard();
+      document.getElementById('chess-status').innerText = "Your turn! Click a white piece to move.";
+    }
+
+    function resetChess() {
+      board = JSON.parse(JSON.stringify(initialBoard));
+      selectedPiece = null;
+      turn = 'player';
+      renderBoard();
+      document.getElementById('chess-status').innerText = "Your turn! Click a white piece to move.";
+    }
+
+    renderBoard();
   </script>
 </body>
 </html>
