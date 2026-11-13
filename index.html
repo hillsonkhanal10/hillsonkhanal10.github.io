@@ -130,7 +130,6 @@
     .card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--text); }
     .card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
     
-    /* Wooden Chess Board Styling */
     .chess-container {
       display: flex;
       flex-direction: column;
@@ -156,7 +155,6 @@
       font-size: 36px;
       cursor: pointer;
       user-select: none;
-      transition: background 0.1s;
     }
     .square.light { background-color: #edd1b0; color: #1a1a1a; }
     .square.dark { background-color: #b58863; color: #1a1a1a; }
@@ -187,7 +185,6 @@
   </header>
 
   <main>
-    <!-- HOME SECTION -->
     <div id="home" class="section-content active">
       <h1>Hi, I'm Hillson!</h1>
       <div class="tags">
@@ -201,7 +198,6 @@
       </div>
     </div>
 
-    <!-- PROJECTS SECTION -->
     <div id="projects" class="section-content">
       <h1>Projects</h1>
       <p class="bio">Small games, experiments, and game-dev side quests. Each one is a step toward turning ideas into playable worlds.</p>
@@ -219,7 +215,6 @@
       </div>
     </div>
 
-    <!-- STATS SECTION -->
     <div id="stats" class="section-content">
       <h1>Stats & Activity</h1>
       <div class="grid">
@@ -234,7 +229,6 @@
       </div>
     </div>
 
-    <!-- CHESS MINI GAME VS ALBERT -->
     <div id="minigame" class="section-content">
       <h1>Play Chess vs Albert</h1>
       <p class="bio" id="chess-status" style="margin-bottom: 10px;">Your turn! Click a white piece to move.</p>
@@ -244,7 +238,6 @@
       </div>
     </div>
 
-    <!-- CHAT SECTION -->
     <div id="chat" class="section-content">
       <h1>Chat / Contact</h1>
       <div class="card">
@@ -290,7 +283,6 @@
     let selectedPiece = null;
     let turn = 'player';
 
-    // Using real chess piece unicode characters matching the classic style
     const pieceSymbols = {
       'r': '♜', 'n': '♞', 'b': '♝', 'q': '♛', 'k': '♚', 'p': '♟',
       'R': '♜', 'N': '♞', 'B': '♝', 'Q': '♛', 'K': '♚', 'P': '♟'
@@ -309,7 +301,6 @@
           const p = board[r][c];
           if (p) {
             sq.innerText = pieceSymbols[p] || p;
-            // Style White pieces differently from Black pieces for clarity
             if (p === p.toUpperCase()) {
               sq.style.color = '#fff';
               sq.style.textShadow = '0 1px 3px rgba(0,0,0,0.8)';
