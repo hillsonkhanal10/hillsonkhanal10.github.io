@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hillson — a 15-year-old student from Nepal learning game development. Projects, stats, chat, and GitHub.">
+    <meta name="theme-color" content="#0a0c12">
+    <title>Hillson — Game Dev Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function () {
+            var root = document.documentElement;
+            root.classList.add('js');
+            var theme = 'dark';
+            try {
+                var saved = localStorage.getItem('theme');
+                if (saved === 'light' || saved === 'dark') theme = saved;
+            } catch (error) {}
+            root.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body>
+    <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .5C5.73.5.99 5.24.99 11.51c0 4.86 3.15 8.98 7.52 10.44.55.1.75-.24.75-.53v-2.06c-3.06.67-3.7-1.3-3.7-1.3-.5-1.27-1.22-1.61-1.22-1.61-1-.68.08-.67.08-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.68 2.57 1.2 3.2.92.1-.71.38-1.2.7-1.48-2.44-.28-5.01-1.22-5.01-5.44 0-1.2.43-2.18 1.13-2.95-.11-.28-.49-1.4.11-2.92 0 0 .92-.29 3.01 1.13a10.4 10.4 0 0 1 5.48 0c2.09-1.42 3.01-1.13 3.01-1.13.6 1.52.22 2.64.11 2.92.7.77 1.13 1.75 1.13 2.95 0 4.23-2.58 5.16-5.03 5.43.4.34.75 1.01.75 2.04v3.03c0 .29.2.64.76.53a10.52 10.52 0 0 0 7.51-10.44C23.01 5.24 18.27.5 12 .5Z"/>
+        </symbol>
+        <symbol id="i-gamepad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="6" y1="12" x2="10" y2="12"/>
+            <line x1="8" y1="10" x2="8" y2="14"/>
+            <line x1="15" y1="13" x2="15.01" y2="13"/>
+            <line x1="18" y1="11" x2="18.01" y2="11"/>
+            <rect x="2" y="6" width="20" height="12" rx="6"/>
+        </symbol>
+        <symbol id="i-chess" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 21h12"/>
+            <path d="M7 21V11h10v10"/>
+            <path d="M7 11V7h2v2h2V7h2v2h2V7h2v4"/>
+            <path d="M10 15h4"/>
+        </symbol>
+        <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+        </symbol>
+        <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+        </symbol>
+        <symbol id="i-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+            <path d="M4 22h16"/>
+            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+        </symbol>
+        <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="6"/>
+            <circle cx="12" cy="12" r="2"/>
+        </symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="m3 7 9 6 9-6"/>
+        </symbol>
+        <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m22 2-7 20-4-9-9-4Z"/>
+            <path d="M22 2 11 13"/>
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+        </symbol>
+        <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 3h6v6"/>
+            <path d="M10 14 21 3"/>
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        </symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+        </symbol>
+        <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+        </symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2" x2="12" y2="4"/>
+            <line x1="12" y1="20" x2="12" y2="22"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="2" y1="12" x2="4" y2="12"/>
+            <line x1="20" y1="12" x2="22" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+        </symbol>
+        <symbol id="i-repo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/>
+        </symbol>
+        <symbol id="i-branch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="6" y1="3" x2="6" y2="15"/>
+            <circle cx="18" cy="6" r="3"/>
+            <circle cx="6" cy="18" r="3"/>
+            <path d="M18 9a9 9 0 0 1-9 9"/>
+        </symbol>
+        <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 2 3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/>
+        </symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+        </symbol>
+    </svg>
+
+    <a class="skip-link" href="#home">Skip to content</a>
+    <div class="bg-glow" aria-hidden="true"></div>
+
+    <header class="header" id="top">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="brand" href="#home" aria-label="Hillson — home">
+                <span class="brand__mark" aria-hidden="true">&#9822;</span>
+                <span>Hillson</span>
+            </a>
+
+            <ul class="nav__links" id="navMenu">
+                <li><a class="nav__link is-active" href="#home">Home</a></li>
+                <li><a class="nav__link" href="#projects">Projects</a></li>
+                <li><a class="nav__link" href="#stats">Stats</a></li>
+                <li><a class="nav__link" href="#chat">Chat</a></li>
+                <li><a class="nav__link" href="#github">GitHub</a></li>
+            </ul>
+
+            <div class="nav__actions">
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode" aria-pressed="false">
+                    <svg class="icon theme-toggle__moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+                    <svg class="icon theme-toggle__sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+                </button>
+                <button class="nav__burger" id="navToggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">
+                    <svg class="icon nav__burger-open" aria-hidden="true"><use href="#i-menu"></use></svg>
+                    <svg class="icon nav__burger-close" aria-hidden="true"><use href="#i-close"></use></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home" aria-labelledby="hero-title">
+            <div class="container">
+                <div class="hero__grid">
+                    <div class="hero__content">
+                        <span class="hero__badge"><span class="pulse" aria-hidden="true"></span> Student &middot; Game Dev &middot; Chess</span>
+                        <h1 class="hero__title" id="hero-title">Hi, I'm <span class="gradient-text">Hillson!</span></h1>
+                        <p class="hero__lead">I'm a 15-year-old student from Nepal with a big passion for gaming and chess. Lately, I've been diving into game development, learning how to turn fun ideas into playable experiences. Welcome to my portfolio&mdash;take a look at what I'm building!</p>
+                        <div class="hero__actions">
+                            <a class="btn btn--primary" href="#projects">
+                                See My Projects
+                                <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+                            </a>
+                            <a class="btn btn--ghost" href="#chat">
+                                <svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>
+                                Let's Chat
+                            </a>
+                        </div>
+                        <ul class="hero__meta">
+                            <li>
+                                <svg class="icon" aria-hidden="true"><use href="#i-pin"></use></svg>
+                                Nepal
+                            </li>
+                            <li>
+                                <svg class="icon" aria-hidden="true"><use href="#i-chess"></use></svg>
+                                Chess enthusiast
+                            </li>
+                            <li>
+                                <svg class="icon" aria-hidden="true"><use href="#i-gamepad"></use></svg>
+                                Aspiring game dev
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="hero__visual">
+                        <div class="hero__portrait">
+                            <img src="assets/profile.jpg" alt="Hillson" width="562" height="562">
+                        </div>
+                        <div class="float-chip float-chip--tl">
+                            <svg class="icon" aria-hidden="true"><use href="#i-gamepad"></use></svg>
+                            Learning Godot
+                        </div>
+                        <div class="float-chip float-chip--br">
+                            <svg class="icon" aria-hidden="true"><use href="#i-chess"></use></svg>
+                            Always up for chess
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects" aria-labelledby="projects-title">
+            <div class="container">
+                <div class="section__head" data-reveal>
+                    <span class="eyebrow">What I'm building</span>
+                    <h2 class="section__title" id="projects-title">Projects</h2>
+                    <p class="section__desc">Small games, experiments, and game-dev side quests. Each one is a step toward turning ideas into playable worlds.</p>
+                </div>
+
+                <div class="projects__grid" data-reveal-group>
+                    <article class="project-card project-card--1" data-reveal>
+                        <div class="project-card__media">
+                            <span class="project-card__status">Playable prototype</span>
+                            <span class="project-card__index" aria-hidden="true">01</span>
+                            <div class="project-card__icon">
+                                <svg class="icon" aria-hidden="true"><use href="#i-gamepad"></use></svg>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Pixel Quest</h3>
+                            <p class="project-card__desc">A 2D pixel platformer about a tiny knight collecting lost stars across hand-crafted levels.</p>
+                            <ul class="tag-list" aria-label="Technologies">
+                                <li class="tag">Godot 4</li>
+                                <li class="tag">GDScript</li>
+                                <li class="tag">Pixel Art</li>
+                            </ul>
+                            <a class="project-card__link" href="https://github.com/hillson" target="_blank" rel="noopener noreferrer">
+                                <svg class="icon" aria-hidden="true"><use href="#i-code"></use></svg>
+                                Play / View Code
+                                <svg class="icon project-card__link-arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card project-card--2" data-reveal>
+                        <div class="project-card__media">
+                            <span class="project-card__status">In progress</span>
+                            <span class="project-card__index" aria-hidden="true">02</span>
+                            <div class="project-card__icon">
+                                <svg class="icon" aria-hidden="true"><use href="#i-chess"></use></svg>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Checkmate Trainer</h3>
+                            <p class="project-card__desc">A chess puzzle trainer that serves tactical positions and tracks which patterns you keep missing.</p>
+                            <ul class="tag-list" aria-label="Technologies">
+                                <li class="tag">Python</li>
+                                <li class="tag">Pygame</li>
+                                <li class="tag">Stockfish</li>
+                            </ul>
+                            <a class="project-card__link" href="https://github.com/hillson" target="_blank" rel="noopener noreferrer">
+                                <svg class="icon" aria-hidden="true"><use href="#i-code"></use></svg>
+                                Play / View Code
+                                <svg class="icon project-card__link-arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card project-card--3" data-reveal>
+                        <div class="project-card__media">
+                            <span class="project-card__status">Early build</span>
+                            <span class="project-card__index" aria-hidden="true">03</span>
+                            <div class="project-card__icon">
+                                <svg class="icon" aria-hidden="true"><use href="#i-rocket"></use></svg>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Star Dodger</h3>
+                            <p class="project-card__desc">A fast arcade dodger where you weave through meteor storms and chase a new high score.</p>
+                            <ul class="tag-list" aria-label="Technologies">
+                                <li class="tag">Unity</li>
+                                <li class="tag">C#</li>
+                                <li class="tag">WebGL</li>
+                            </ul>
+                            <a class="project-card__link" href="https://github.com/hillson" target="_blank" rel="noopener noreferrer">
+                                <svg class="icon" aria-hidden="true"><use href="#i-code"></use></svg>
+                                Play / View Code
+                                <svg class="icon project-card__link-arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="stats" aria-labelledby="stats-title">
+            <div class="container">
+                <div class="section__head" data-reveal>
+                    <span class="eyebrow">By the numbers</span>
+                    <h2 class="section__title" id="stats-title">Stats</h2>
+                    <p class="section__desc">A quick look at where I am right now. These are personal milestones, updated as I keep learning and shipping small things.</p>
+                </div>
+
+                <div class="stats__grid" data-reveal-group>
+                    <article class="stat-card stat-card--1" data-reveal>
+                        <div class="stat-card__icon">
+                            <svg class="icon" aria-hidden="true"><use href="#i-trophy"></use></svg>
+                        </div>
+                        <div class="stat-card__value" data-count="3">3</div>
+                        <h3 class="stat-card__label">Games Built</h3>
+                        <p class="stat-card__sub">Playable prototypes and game jam entries</p>
+                    </article>
+
+                    <article class="stat-card stat-card--2" data-reveal>
+                        <div class="stat-card__icon">
+                            <svg class="icon" aria-hidden="true"><use href="#i-chess"></use></svg>
+                        </div>
+                        <div class="stat-card__value" data-count="250">250</div>
+                        <h3 class="stat-card__label">Chess Puzzles Solved</h3>
+                        <p class="stat-card__sub">Current rapid rating: 1250</p>
+                    </article>
+
+                    <article class="stat-card stat-card--3" data-reveal>
+                        <div class="stat-card__icon">
+                            <svg class="icon" aria-hidden="true"><use href="#i-code"></use></svg>
+                        </div>
+                        <div class="stat-card__value" data-count="25" data-suffix="K+">25K+</div>
+                        <h3 class="stat-card__label">Lines of Code</h3>
+                        <p class="stat-card__sub">Across games, scripts, and experiments</p>
+                    </article>
+
+                    <article class="stat-card stat-card--4" data-reveal>
+                        <div class="stat-card__icon">
+                            <svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg>
+                        </div>
+                        <div class="stat-card__value stat-card__value--text">Game Dev</div>
+                        <h3 class="stat-card__label">Current Focus</h3>
+                        <p class="stat-card__sub">Learning Godot, Unity, and game design</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="chat" aria-labelledby="chat-title">
+            <div class="container">
+                <div class="section__head" data-reveal>
+                    <span class="eyebrow">Say hello</span>
+                    <h2 class="section__title" id="chat-title">Chat</h2>
+                    <p class="section__desc">Got a game idea, a chess challenge, or just want to say hi? Drop a message below and you'll get an instant demo reply.</p>
+                </div>
+
+                <div class="chat__grid">
+                    <div class="chat__intro" data-reveal>
+                        <h3 class="chat__heading">Let's talk games, chess, or code.</h3>
+                        <p class="chat__text">I'm always excited to connect with other players and creators. If the demo chat isn't enough, the links below go straight to my inbox and profiles.</p>
+
+                        <div class="chat__socials">
+                            <a class="social-link" href="mailto:hello@hillson.dev">
+                                <span class="social-link__icon">
+                                    <svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>
+                                </span>
+                                <span class="social-link__body">
+                                    <strong>Email</strong>
+                                    <span>hello@hillson.dev</span>
+                                </span>
+                                <svg class="icon social-link__arrow" aria-hidden="true"><use href="#i-external"></use></svg>
+                            </a>
+                            <a class="social-link" href="https://github.com/hillson" target="_blank" rel="noopener noreferrer">
+                                <span class="social-link__icon">
+                                    <svg class="icon" aria-hidden="true"><use href="#i-github"></use></svg>
+                                </span>
+                                <span class="social-link__body">
+                                    <strong>GitHub</strong>
+                                    <span>@hillson</span>
+                                </span>
+                                <svg class="icon social-link__arrow" aria-hidden="true"><use href="#i-external"></use></svg>
+                            </a>
+                            <a class="social-link" href="https://www.chess.com/member/hillson" target="_blank" rel="noopener noreferrer">
+                                <span class="social-link__icon">
+                                    <svg class="icon" aria-hidden="true"><use href="#i-chess"></use></svg>
+                                </span>
+                                <span class="social-link__body">
+                                    <strong>Chess.com</strong>
+                                    <span>Challenge me to a game</span>
+                                </span>
+                                <svg class="icon social-link__arrow" aria-hidden="true"><use href="#i-external"></use></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="chat-card" data-reveal>
+                        <div class="chat-card__head">
+                            <div class="chat-avatar">
+                                <img src="assets/profile.jpg" alt="" width="40" height="40">
+                                <span class="chat-avatar__dot" aria-hidden="true"></span>
+                            </div>
+                            <div class="chat-card__id">
+                                <strong>Hillson</strong>
+                                <span><span class="online-dot" aria-hidden="true"></span> Online &middot; replies instantly (demo)</span>
+                            </div>
+                        </div>
+
+                        <div class="chat-card__log" id="chatLog" role="log" aria-live="polite" aria-relevant="additions">
+                            <div class="msg msg--bot">
+                                <p class="msg__text">Hey there! Welcome to my portfolio. Send me a message and I'll get back to you with an instant demo reply.</p>
+                                <span class="msg__meta">Hillson &middot; just now</span>
+                            </div>
+                        </div>
+
+                        <form class="chat-card__form" id="chatForm">
+                            <div class="field">
+                                <label for="chatName">Name</label>
+                                <input id="chatName" name="name" type="text" placeholder="Your name" autocomplete="name" maxlength="40" required>
+                            </div>
+                            <div class="field">
+                                <label for="chatMessage">Message</label>
+                                <textarea id="chatMessage" name="message" rows="3" placeholder="Say hi, share an idea, or challenge me to chess..." maxlength="500" required></textarea>
+                            </div>
+                            <div class="chat-card__foot">
+                                <p class="chat-card__hint">Demo chat &mdash; messages stay in your browser.</p>
+                                <button class="btn btn--primary btn--send" id="chatSend" type="submit">
+                                    <svg class="icon" aria-hidden="true"><use href="#i-send"></use></svg>
+                                    Send
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="github" aria-labelledby="github-title">
+            <div class="container">
+                <div class="section__head" data-reveal>
+                    <span class="eyebrow">Open source</span>
+                    <h2 class="section__title" id="github-title">GitHub</h2>
+                    <p class="section__desc">Code, experiments, and whatever I'm currently breaking and fixing. Come follow the progress.</p>
+                </div>
+
+                <div class="github__banner" data-reveal>
+                    <div class="github__profile">
+                        <span class="github__mark">
+                            <svg class="icon" aria-hidden="true"><use href="#i-github"></use></svg>
+                        </span>
+                        <h3 class="github__name">Hillson</h3>
+                        <a class="github__handle" href="https://github.com/hillson" target="_blank" rel="noopener noreferrer">@hillson</a>
+                        <p class="github__text">I share game prototypes, small scripts, and learning projects here. Follow along as I level up one commit at a time.</p>
+                        <a class="btn btn--primary github__button" href="https://github.com/hillson" target="_blank" rel="noopener noreferrer">
+                            <svg class="icon" aria-hidden="true"><use href="#i-github"></use></svg>
+                            Visit GitHub Profile
+                            <svg class="icon" aria-hidden="true"><use href="#i-external"></use></svg>
+                        </a>
+                    </div>
+
+                    <div class="github__preview">
+                        <div class="github__block">
+                            <div class="github__block-head">
+                                <span>
+                                    <svg class="icon" aria-hidden="true"><use href="#i-repo"></use></svg>
+                                    Pinned repositories
+                                </span>
+                                <span class="badge">3 repos</span>
+                            </div>
+                            <div class="repo-list">
+                                <a class="repo" href="https://github.com/hillson" target="_blank" rel="noopener noreferrer">
+                                    <span class="repo__icon">
+                                        <svg class="icon" aria-hidden="true"><use href="#i-repo"></use></svg>
+                                    </span>
+                                    <span class="repo__body">
+                                        <span class="repo__name">pixel-quest</span>
+                                        <span class="repo__desc">2D pixel platformer built with Godot.</span>
+                                    </span>
+                                    <span class="repo__meta">
+                                        <span class="lang-dot lang-dot--gdscript" aria-hidden="true"></span>
+                                        GDScript
+                                        <span class="repo__stars">
+                                            <svg class="icon" aria-hidden="true"><use href="#i-star"></use></svg>
+                                            8
+                                        </span>
+                                    </span>
+                                </a>
+                                <a class="repo" href="https://github.com/hillson" target="_blank" rel="noopener noreferrer">
+                                    <span class="repo__icon">
+                                        <svg class="icon" aria-hidden="true"><use href="#i-repo"></use></svg>
+                                    </span>
+                                    <span class="repo__body">
+                                        <span class="repo__name">checkmate-trainer</span>
+                                        <span class="repo__desc">Chess puzzle trainer with Stockfish.</span>
+                                    </span>
+                                    <span class="repo__meta">
+                                        <span class="lang-dot lang-dot--python" aria-hidden="true"></span>
+                                        Python
+                                        <span class="repo__stars">
+                                            <svg class="icon" aria-hidden="true"><use href="#i-star"></use></svg>
+                                            12
+                                        </span>
+                                    </span>
+                                </a>
+                                <a class="repo" href="https://github.com/hillson" target="_blank" rel="noopener noreferrer">
+                                    <span class="repo__icon">
+                                        <svg class="icon" aria-hidden="true"><use href="#i-repo"></use></svg>
+                                    </span>
+                                    <span class="repo__body">
+                                        <span class="repo__name">star-dodger</span>
+                                        <span class="repo__desc">Arcade space dodger made with Unity.</span>
+                                    </span>
+                                    <span class="repo__meta">
+                                        <span class="lang-dot lang-dot--csharp" aria-hidden="true"></span>
+                                        C#
+                                        <span class="repo__stars">
+                                            <svg class="icon" aria-hidden="true"><use href="#i-star"></use></svg>
+                                            5
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="github__block github__block--contrib">
+                            <div class="github__block-head">
+                                <span>
+                                    <svg class="icon" aria-hidden="true"><use href="#i-branch"></use></svg>
+                                    Contribution activity
+                                </span>
+                                <span class="badge">preview</span>
+                            </div>
+                            <div class="contrib__grid" id="contribGrid" aria-hidden="true"></div>
+                            <div class="contrib__legend" aria-hidden="true">
+                                <span>Less</span>
+                                <span class="contrib__cell" data-level="0"></span>
+                                <span class="contrib__cell" data-level="1"></span>
+                                <span class="contrib__cell" data-level="2"></span>
+                                <span class="contrib__cell" data-level="3"></span>
+                                <span class="contrib__cell" data-level="4"></span>
+                                <span>More</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <p class="footer__copy">&copy; <span id="year">2026</span> Hillson. Built with HTML, CSS &amp; vanilla JavaScript.</p>
+            <p class="footer__note">Chasing checkmates and playable ideas.</p>
+            <a class="footer__top" href="#home">
+                Back to top
+                <svg class="icon footer__top-icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+        </div>
+    </footer>
+
+    <script src="js/app.js" defer></script>
+</body>
+</html>
