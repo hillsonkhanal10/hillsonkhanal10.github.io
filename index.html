@@ -130,6 +130,7 @@
     .card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--text); }
     .card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
     
+    /* CLASSIC WOODEN CHESS BOARD */
     .chess-container {
       display: flex;
       flex-direction: column;
@@ -143,7 +144,7 @@
       grid-template-rows: repeat(8, 54px);
       border: 6px solid #5c3a21;
       border-radius: 6px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       overflow: hidden;
     }
     .square {
@@ -152,12 +153,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 36px;
+      font-size: 38px;
       cursor: pointer;
       user-select: none;
     }
-    .square.light { background-color: #edd1b0; color: #1a1a1a; }
-    .square.dark { background-color: #b58863; color: #1a1a1a; }
+    /* Exact wooden colors */
+    .square.light { background-color: #edd1b0; }
+    .square.dark { background-color: #b58863; }
     .square.selected { background-color: #7b61ff !important; }
 
     footer {
@@ -283,6 +285,7 @@
     let selectedPiece = null;
     let turn = 'player';
 
+    // Solid distinct pieces for clear visibility
     const pieceSymbols = {
       'r': '♜', 'n': '♞', 'b': '♝', 'q': '♛', 'k': '♚', 'p': '♟',
       'R': '♜', 'N': '♞', 'B': '♝', 'Q': '♛', 'K': '♚', 'P': '♟'
@@ -302,11 +305,11 @@
           if (p) {
             sq.innerText = pieceSymbols[p] || p;
             if (p === p.toUpperCase()) {
-              sq.style.color = '#fff';
-              sq.style.textShadow = '0 1px 3px rgba(0,0,0,0.8)';
+              sq.style.color = '#ffffff'; // White pieces
+              sq.style.textShadow = '0 2px 4px rgba(0,0,0,0.9)';
             } else {
-              sq.style.color = '#111';
-              sq.style.textShadow = '0 1px 2px rgba(255,255,255,0.3)';
+              sq.style.color = '#111111'; // Black pieces
+              sq.style.textShadow = '0 1px 2px rgba(255,255,255,0.4)';
             }
           }
           sq.onclick = () => handleSquareClick(r, c);
