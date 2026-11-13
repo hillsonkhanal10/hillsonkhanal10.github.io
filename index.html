@@ -129,7 +129,7 @@
     }
     .card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--text); }
     .card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
-    
+
     /* Chess styling */
     .chess-container {
       display: flex;
@@ -267,7 +267,7 @@
       if (event) event.preventDefault();
       document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('nav a').forEach(el => el.classList.remove('active'));
-      
+
       document.getElementById(tabId).classList.add('active');
       if (event && event.target && event.target.tagName === 'A') {
         event.target.classList.add('active');
@@ -316,7 +316,7 @@
     function handleSquareClick(r, c) {
       if (turn !== 'player') return;
       const piece = board[r][c];
-      
+
       if (piece && piece === piece.toUpperCase()) {
         selectedPiece = { r, c };
         renderBoard();
@@ -328,7 +328,7 @@
         board[selectedPiece.r][selectedPiece.c] = '';
         selectedPiece = null;
         renderBoard();
-        
+
         turn = 'albert';
         document.getElementById('chess-status').innerText = "Albert is thinking...";
         setTimeout(albertMove, 800);
