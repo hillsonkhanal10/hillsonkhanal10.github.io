@@ -130,38 +130,6 @@
     .card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--text); }
     .card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
     
-    /* CLASSIC WOODEN CHESS BOARD */
-    .chess-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .chessboard {
-      display: grid;
-      grid-template-columns: repeat(8, 54px);
-      grid-template-rows: repeat(8, 54px);
-      border: 6px solid #5c3a21;
-      border-radius: 6px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      overflow: hidden;
-    }
-    .square {
-      width: 54px;
-      height: 54px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 38px;
-      cursor: pointer;
-      user-select: none;
-    }
-    /* Exact wooden colors */
-    .square.light { background-color: #edd1b0; }
-    .square.dark { background-color: #b58863; }
-    .square.selected { background-color: #7b61ff !important; }
-
     footer {
       border-top: 1px solid var(--border);
       padding: 30px;
@@ -179,7 +147,6 @@
       <a href="#" class="active" onclick="switchTab('home', event)">Home</a>
       <a href="#" onclick="switchTab('projects', event)">Projects</a>
       <a href="#" onclick="switchTab('stats', event)">Stats</a>
-      <a href="#" onclick="switchTab('minigame', event)">Play vs Albert</a>
       <a href="#" onclick="switchTab('chat', event)">Chat</a>
       <a href="https://github.com/hillsonkhanal10" target="_blank">GitHub</a>
       <button id="theme-toggle" title="Toggle theme">◐</button>
@@ -187,19 +154,20 @@
   </header>
 
   <main>
+    <!-- HOME SECTION -->
     <div id="home" class="section-content active">
       <h1>Hi, I'm Hillson!</h1>
       <div class="tags">
         <span class="tag">🟢 Student</span>
         <span class="tag">🎮 Game Dev</span>
-        <span class="tag">♟️ Chess</span>
         <span class="tag">🇳🇵 Nepal</span>
       </div>
       <div class="bio">
-        I'm a 15-year-old developer from Nepal with a big passion for gaming and chess. Lately, I've been diving into game development, learning how to turn fun ideas into playable experiences. Welcome to my portfolio—take a look at what I'm building!
+        I'm a 15-year-old developer from Nepal with a big passion for gaming. Lately, I've been diving into game development, learning how to turn fun ideas into playable experiences. Welcome to my portfolio—take a look at what I'm building!
       </div>
     </div>
 
+    <!-- PROJECTS SECTION -->
     <div id="projects" class="section-content">
       <h1>Projects</h1>
       <p class="bio">Small games, experiments, and game-dev side quests. Each one is a step toward turning ideas into playable worlds.</p>
@@ -210,13 +178,14 @@
           <a href="https://github.com/hillsonkhanal10" target="_blank" style="color: var(--accent); font-size: 0.85rem; text-decoration: none; font-weight: 700;">View Code &rarr;</a>
         </div>
         <div class="card">
-          <h3>Chess CLI Tool</h3>
-          <p>A terminal application built to practice tactics and positions.</p>
+          <h3>Game Dev Experiments</h3>
+          <p>Prototype mechanics and playful coding side quests.</p>
           <a href="https://github.com/hillsonkhanal10" target="_blank" style="color: var(--accent); font-size: 0.85rem; text-decoration: none; font-weight: 700;">View Code &rarr;</a>
         </div>
       </div>
     </div>
 
+    <!-- STATS SECTION -->
     <div id="stats" class="section-content">
       <h1>Stats & Activity</h1>
       <div class="grid">
@@ -225,26 +194,18 @@
           <p>Learning Godot, C++, and web development daily.</p>
         </div>
         <div class="card">
-          <h3>Chess Rating</h3>
-          <p>Active tactical puzzle solver and casual player.</p>
+          <h3>Focus</h3>
+          <p>Building clean code and interactive web experiences.</p>
         </div>
       </div>
     </div>
 
-    <div id="minigame" class="section-content">
-      <h1>Play Chess vs Albert</h1>
-      <p class="bio" id="chess-status" style="margin-bottom: 10px;">Your turn! Click a white piece to move.</p>
-      <div class="chess-container">
-        <div class="chessboard" id="board"></div>
-        <button onclick="resetChess()" style="background: var(--accent); color: white; border: none; padding: 8px 16px; font-family: inherit; font-weight: bold; border-radius: 4px; cursor: pointer;">Restart Game</button>
-      </div>
-    </div>
-
+    <!-- CHAT SECTION -->
     <div id="chat" class="section-content">
       <h1>Chat / Contact</h1>
       <div class="card">
         <h3>Get in Touch</h3>
-        <p>Want to talk about game dev, chess, or collaborate on a project? Find me on GitHub or drop a message!</p>
+        <p>Want to talk about game dev or collaborate on a project? Find me on GitHub or drop a message!</p>
         <a href="https://github.com/hillsonkhanal10" target="_blank" style="color: var(--accent); font-size: 0.85rem; text-decoration: none; font-weight: 700;">Open GitHub Profile &rarr;</a>
       </div>
     </div>
@@ -270,110 +231,6 @@
         event.target.classList.add('active');
       }
     }
-
-    const initialBoard = [
-      ['r','n','b','q','k','b','n','r'],
-      ['p','p','p','p','p','p','p','p'],
-      ['','','','','','','',''],
-      ['','','','','','','',''],
-      ['','','','','','','',''],
-      ['','','','','','','',''],
-      ['P','P','P','P','P','P','P','P'],
-      ['R','N','B','Q','K','B','N','R']
-    ];
-    let board = JSON.parse(JSON.stringify(initialBoard));
-    let selectedPiece = null;
-    let turn = 'player';
-
-    // Solid distinct pieces for clear visibility
-    const pieceSymbols = {
-      'r': '♜', 'n': '♞', 'b': '♝', 'q': '♛', 'k': '♚', 'p': '♟',
-      'R': '♜', 'N': '♞', 'B': '♝', 'Q': '♛', 'K': '♚', 'P': '♟'
-    };
-
-    function renderBoard() {
-      const boardEl = document.getElementById('board');
-      boardEl.innerHTML = '';
-      for (let r = 0; r < 8; r++) {
-        for (let c = 0; c < 8; c++) {
-          const sq = document.createElement('div');
-          sq.className = `square ${(r + c) % 2 === 0 ? 'light' : 'dark'}`;
-          if (selectedPiece && selectedPiece.r === r && selectedPiece.c === c) {
-            sq.classList.add('selected');
-          }
-          const p = board[r][c];
-          if (p) {
-            sq.innerText = pieceSymbols[p] || p;
-            if (p === p.toUpperCase()) {
-              sq.style.color = '#ffffff'; // White pieces
-              sq.style.textShadow = '0 2px 4px rgba(0,0,0,0.9)';
-            } else {
-              sq.style.color = '#111111'; // Black pieces
-              sq.style.textShadow = '0 1px 2px rgba(255,255,255,0.4)';
-            }
-          }
-          sq.onclick = () => handleSquareClick(r, c);
-          boardEl.appendChild(sq);
-        }
-      }
-    }
-
-    function handleSquareClick(r, c) {
-      if (turn !== 'player') return;
-      const piece = board[r][c];
-      
-      if (piece && piece === piece.toUpperCase()) {
-        selectedPiece = { r, c };
-        renderBoard();
-        return;
-      }
-
-      if (selectedPiece) {
-        board[r][c] = board[selectedPiece.r][selectedPiece.c];
-        board[selectedPiece.r][selectedPiece.c] = '';
-        selectedPiece = null;
-        renderBoard();
-        
-        turn = 'albert';
-        document.getElementById('chess-status').innerText = "Albert is thinking...";
-        setTimeout(albertMove, 800);
-      }
-    }
-
-    function albertMove() {
-      let blackPieces = [];
-      for (let r = 0; r < 8; r++) {
-        for (let c = 0; c < 8; c++) {
-          if (board[r][c] && board[r][c] === board[r][c].toLowerCase()) {
-            blackPieces.push({ r, c });
-          }
-        }
-      }
-
-      if (blackPieces.length > 0) {
-        let randomPiece = blackPieces[Math.floor(Math.random() * blackPieces.length)];
-        let targetR = randomPiece.r + 1;
-        let targetC = randomPiece.c;
-        if (targetR < 8 && board[targetR][targetC] === '') {
-          board[targetR][targetC] = board[randomPiece.r][randomPiece.c];
-          board[randomPiece.r][randomPiece.c] = '';
-        }
-      }
-
-      turn = 'player';
-      renderBoard();
-      document.getElementById('chess-status').innerText = "Your turn! Click a white piece to move.";
-    }
-
-    function resetChess() {
-      board = JSON.parse(JSON.stringify(initialBoard));
-      selectedPiece = null;
-      turn = 'player';
-      renderBoard();
-      document.getElementById('chess-status').innerText = "Your turn! Click a white piece to move.";
-    }
-
-    renderBoard();
   </script>
 </body>
 </html>
