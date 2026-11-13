@@ -79,10 +79,10 @@
     }
     main {
       flex: 1;
-      max-width: 900px;
+      max-width: 1100px;
       width: 100%;
       margin: 0 auto;
-      padding: 60px 24px;
+      padding: 40px 24px;
     }
     .section-content { display: none; }
     .section-content.active { display: block; }
@@ -129,7 +129,104 @@
     }
     .card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--text); }
     .card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
-    
+
+    /* SCREENSHOT STYLE CHAT UI */
+    .tether-container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      border-radius: 8px;
+      min-height: 520px;
+      overflow: hidden;
+    }
+    .chat-sidebar {
+      border-right: 1px solid var(--border);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .tether-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+    }
+    .sidebar-section {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .guest-box {
+      margin-top: auto;
+      padding-top: 15px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+    .guest-avatar {
+      background: var(--border);
+      color: var(--text);
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    .chat-main-area {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      text-align: center;
+    }
+    .chat-placeholder-icon {
+      font-size: 2.5rem;
+      background: var(--border);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: var(--muted);
+    }
+    .chat-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
     footer {
       border-top: 1px solid var(--border);
       padding: 30px;
@@ -200,13 +297,43 @@
       </div>
     </div>
 
-    <!-- CHAT SECTION -->
+    <!-- CHAT SECTION (SCREENSHOT STYLE) -->
     <div id="chat" class="section-content">
-      <h1>Chat / Contact</h1>
-      <div class="card">
-        <h3>Get in Touch</h3>
-        <p>Want to talk about game dev or collaborate on a project? Find me on GitHub or drop a message!</p>
-        <a href="https://github.com/hillsonkhanal10" target="_blank" style="color: var(--accent); font-size: 0.85rem; text-decoration: none; font-weight: 700;">Open GitHub Profile &rarr;</a>
+      <div class="tether-container">
+        <div class="chat-sidebar">
+          <div class="tether-title">Tether</div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-primary" style="flex: 1;" onclick="alert('Room creation feature coming soon!')">New room</button>
+            <button class="btn-secondary" onclick="alert('Join room prompt')">Join</button>
+          </div>
+          <div>
+            <div class="sidebar-section">Rooms &nbsp; 0</div>
+            <p style="font-size: 0.75rem; color: var(--muted);">Your rooms will appear here.</p>
+          </div>
+          <div>
+            <div class="sidebar-section">People &nbsp; 0</div>
+            <p style="font-size: 0.75rem; color: var(--muted);">People who join rooms will appear here.</p>
+          </div>
+          <div class="guest-box">
+            <div class="guest-avatar">G</div>
+            <div>
+              <div style="font-weight: 700;">Guest 6170</div>
+              <div style="color: var(--muted); font-size: 0.7rem;">This browser session</div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-main-area">
+          <div class="chat-placeholder-icon">#</div>
+          <h2 style="font-size: 1.3rem; margin-bottom: 8px;">Start a conversation</h2>
+          <p style="color: var(--muted); font-size: 0.85rem; max-width: 320px; line-height: 1.5;">
+            Create a room and share its invite, or join someone else's. No installation. No account needed.
+          </p>
+          <div class="chat-actions">
+            <button class="btn-primary" onclick="alert('Create room dialog opened!')">Create a room</button>
+            <button class="btn-secondary" onclick="alert('Join invite prompt opened!')">Join with an invite</button>
+          </div>
+          <p style="color: var(--muted); font-size: 0.7rem; margin-top: 24px;">Messages expire after 24 hours.</p>
+        </div>
       </div>
     </div>
   </main>
